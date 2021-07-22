@@ -1,0 +1,26 @@
+﻿@model IQueryable<HistoryTravel>
+@{
+    TextFoMi textField = ViewBag.TextFoMi;
+
+    ViewBag.Title = textField.MetaTitle;
+    ViewBag.Description = textField.MetaDescription;
+    ViewBag.Keywords = textField.MetaKeywords;
+}
+
+<div>
+    @if (Model.Any())
+    {
+        <ul class="big-image-list">
+            @foreach (HistoryTravel entity in Model)
+            {
+                <li>
+                    <a asp-area="" asp-controller="Travels" asp-action="Index" asp-route-id="@entity.Id">
+                        <img src="~/images/@entity.TitleImagePath" alt="" class="left" />
+                    </a>
+                    <h4>@entity.Title</h4>
+                    <p>@entity.Subtitle</p>
+                </li>
+            }
+        </ul>
+    }
+</div>
